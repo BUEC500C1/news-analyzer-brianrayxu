@@ -4,7 +4,7 @@ News Analyzer API suite using Flask, Google NLP, and ...
 
 ## Module Outlines
 
-### File Uploader
+### I. File Uploader
 #### Design
 As a user of this API, I would want to be able to:
 1. Upload a file successfully into some file storage on the cloud.
@@ -16,7 +16,7 @@ This module will be both procedure and entity based. The actual file uploading t
 #### Methods
 Sample High Level Methods
 
-### Text NLP Analysis
+### II. Text NLP Analysis
 #### Design
 As a user of this API, I would want to be able to:
 1. asdf
@@ -25,7 +25,7 @@ As a user of this API, I would want to be able to:
 #### Methods
 Sample High Level Methods
 
-### Newfeed Ingestor
+### III. Newfeed Ingestor
 #### Design
 As a user of this API, I would want to be able to:
 1. asdf
