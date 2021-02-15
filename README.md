@@ -20,16 +20,27 @@ Sample High Level Methods
   - documentFile : Creates an entry in the database tracking all stored documents. Includes timestamp, size, tags, etc.
   - storeFile(inFile) : Takes in file and stores it in a filestore service (Google Cloud, Azure, etc.)
 
+- deleteFile(fileID) : Deletes a file from the database and the filestore
 
+- readFile(fileID) : Query database for specific record in database.
 
+- updateFile(fileID, inFile) : Replace specific record in database and filestore.
+  
+  
 ### II. Text NLP Analysis
 #### Design
 As a user of this API, I would want to be able to:
-1. asdf
-2. 1234
-3. 1234
+1. Pass blocks of text to the API and receive some type of analysis/score output.
+2. Pass documents from the filestore into the API with just a filestore ID
+3. 
+
+
+This module will be mostly entity based in design. The focus of this module is getting analysis of files in the filestore and database. This involves querying the database with some specific file ID and obtaining analysis of the database/filestore as output.
+
 #### Methods
 Sample High Level Methods
+
+- 
 
 ### III. Newfeed Ingestor
 #### Design
