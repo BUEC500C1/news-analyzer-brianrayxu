@@ -16,6 +16,12 @@ This module will be both procedure and entity based. The actual file uploading t
 #### Methods
 Sample High Level Methods
 
+- createFile(inFile) : Function that completes all necessary tasks upon receiving a new document
+  - documentFile : Creates an entry in the database tracking all stored documents. Includes timestamp, size, tags, etc.
+  - storeFile(inFile) : Takes in file and stores it in a filestore service (Google Cloud, Azure, etc.)
+
+
+
 ### II. Text NLP Analysis
 #### Design
 As a user of this API, I would want to be able to:
