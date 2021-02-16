@@ -32,21 +32,28 @@ Sample High Level Methods
 As a user of this API, I would want to be able to:
 1. Pass blocks of text to the API and receive some type of analysis/score output.
 2. Pass documents from the filestore into the API with just a filestore ID
-3. 
+3. Find most common words in each article
 
-
-This module will be mostly entity based in design. The focus of this module is getting analysis of files in the filestore and database. This involves querying the database with some specific file ID and obtaining analysis of the database/filestore as output.
+This module will be mostly entity based in design. The focus of this module is getting analysis of files in the filestore and database. This involves querying the database with some specific file ID and obtaining analysis of the database/filestore as output. For the sake of an example, we will assume we are using some sentiment analysis API.
 
 #### Methods
 Sample High Level Methods
 
-- 
+- analyzeText(string text) : returns a sentiment score of the input text.
+
+- findMCW(fileID) : Finds the Most Common Words in the article, returns a list of 5-10 most common words that are not helper words.
 
 ### III. Newfeed Ingestor
 #### Design
 As a user of this API, I would want to be able to:
-1. asdf
-2. 1234
-3. 1234
+1. Load a list of relevant articles based on some keyword or query term
+2. Load a list of relevant articles based on views
+
+This module will be procedure based. This is because the only function needed to achieve the functionality required is just a procedural query of the database used in the File Upload module. 
+
 #### Methods
 Sample High Level Methods
+
+- createFeed(query) : Search the database for articles with the query term in it. Returns a JSON Object
+
+- createFeed('popular') : Return a JSON object containing a list of most popular viewed articles.
