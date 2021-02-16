@@ -1,4 +1,4 @@
-# news-analyzer-brianrayxu
+# News Analyzer Application Suite
 News Analyzer API suite using Flask, Google NLP, and ...
 
 
