@@ -14,6 +14,6 @@ def test_sentimentNLP():
   assert sentimentNLP("abcede") == "fileID needs to be an integer" 
 
 def test_createFeed():
-  assert createFeed() == "Feed Created!"
-    
- 
+  assert createFeed('popular') == "Feed Created!"
+  assert createFeed('someRandomTopic') == "Feed Created!"
+  assert createFeed(12345) == "Query needs to be a string!"
