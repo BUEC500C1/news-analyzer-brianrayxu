@@ -57,3 +57,9 @@ Sample High Level Methods
 - createFeed(query) : Search the database for articles with the query term in it. Returns a JSON Object
 
 - createFeed('popular') : Return a JSON object containing a list of most popular viewed articles.
+
+## Deployment - Flask + AWS
+
+### Flask
+
+### AWS - EC2
