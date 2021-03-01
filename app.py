@@ -1,14 +1,28 @@
 from flask import Flask, jsonify
 import logging
+import pdfreader
+from pdfreader import PDFDocument, SimplePDFViewer
+
 
 app = Flask(__name__)
 
 @app.route('/uploader/create')
 def createFile():
     logging.info("File Creation Started...")
+    #metadata
+    fd = open("Testpdf.pdf", "rb")
+    doc = PDFDocument(fd)
+    version = doc.header.version
+    creationDate = doc.metadata.CreationDate
+    dataType = doc.root.Metadata.Subtype
+    #data methods
+    viewer = SimplePDFViewer(fd)
+    for canvas in viewer:
+        #make += to contcatenate all textdata
+        textData = canvas.strings
+    
     logging.info("File Created!")
-#    return jsonify({'fileID':'TEST',
-#                     'size':'TEST'})
+#     return jsonify({'fileName':fileName, 'version': version, 'creationDate': creationDate, 'dataType': dataType, 'text':textData,})
     return "File Created!"
 
 
