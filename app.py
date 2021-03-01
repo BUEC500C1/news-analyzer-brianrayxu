@@ -3,6 +3,10 @@ import logging
 import pdfreader
 from pdfreader import PDFDocument, SimplePDFViewer
 
+#DB Operations
+client = pymongo.MongoClient("mongodb+srv://Brian:<password>@cluster0.v056q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+db = client.test
+
 
 app = Flask(__name__)
 
@@ -20,6 +24,10 @@ def createFile():
     for canvas in viewer:
         #make += to contcatenate all textdata
         textData = canvas.strings
+    
+    
+    logging.info("Documenting New File")
+    #Add mongo Methods
     
     logging.info("File Created!")
 #     return jsonify({'fileName':fileName, 'version': version, 'creationDate': creationDate, 'dataType': dataType, 'text':textData,})
