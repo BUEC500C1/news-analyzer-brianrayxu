@@ -1,46 +1,66 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template, request
+from werkzeug.utils import secure_filename
+from werkzeug.datastructures import  FileStorage
 import logging
 import pdfreader
 from pdfreader import PDFDocument, SimplePDFViewer
-
-#DB Operations
-client = pymongo.MongoClient("mongodb+srv://Brian:<password>@cluster0.v056q.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-db = client.test
-
+import os
+import pymongo
 
 app = Flask(__name__)
-
-@app.route('/uploader/create')
-def createFile():
-    logging.info("File Creation Started...")
-    #metadata
-    fd = open("Testpdf.pdf", "rb")
-    doc = PDFDocument(fd)
-    version = doc.header.version
-    creationDate = doc.metadata.CreationDate
-    dataType = doc.root.Metadata.Subtype
-    #data methods
-    viewer = SimplePDFViewer(fd)
-    for canvas in viewer:
-        #make += to contcatenate all textdata
-        textData = canvas.strings
-    
-    
-    logging.info("Documenting New File")
-    #Add mongo Methods
-    
-    logging.info("File Created!")
-#     return jsonify({'fileName':fileName, 'version': version, 'creationDate': creationDate, 'dataType': dataType, 'text':textData,})
-    return "File Created!"
+app.config['UPLOAD_FOLDER'] = './filestore/'
 
 
-@app.route('/uploader/delete')
-def deleteFile(fileID):
-    logging.info("File Started...")
-    logging.info("File Created!")
-#     return jsonify({'fileID':'TEST',
-#                     'size':'TEST'})
-    return "File Deleted!"
+#mongoDB init
+client = pymongo.MongoClient('mongodb+srv://Brian:cyp1b1@cluster0.v056q.mongodb.net/FileDB?retryWrites=true&w=majority')
+db = client['FileDB']
+collection = db['Files']
+
+
+@app.route('/upload')
+def upload_file():
+   return render_template('upload.html')
+	
+@app.route('/uploader', methods = ['GET', 'POST'])
+def uploader_file():
+    if request.method == 'POST':
+        f = request.files['file']
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename))
+        f.save(filepath)
+        fd = open(filepath, "rb")
+        doc = PDFDocument(fd)
+        version = doc.header.version
+        print(doc.metadata)
+        creationDate = doc.metadata.get('CreationDate')
+        dataType = doc.metadata.get('Subtype')
+        #data methods
+        viewer = SimplePDFViewer(fd)
+        textData = []
+        for canvas in viewer:
+            #print(canvas.strings)
+            textData += canvas.strings
+            tempstring = ''
+            textWords = []
+            for character in textData:
+                if character != ' ':
+                    tempstring += character
+                else:
+                    if tempstring:
+                        textWords.append(tempstring)
+                        tempstring = ''
+                
+        print(secure_filename(f.filename))
+        print(creationDate)
+        print(textWords)
+
+        fileDocument = {
+            "name" : secure_filename(f.filename),
+            "creationDate" : creationDate,
+            "text" : textWords
+        }
+
+        collection.insert_one(fileDocument)
+        return 'file uploaded successfully'
 
 
 @app.route('/textnlp/', methods=['GET', 'POST'])
@@ -57,4 +77,4 @@ def createFeed():
     return "Feed Created!"
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=105)
+    app.run(host='0.0.0.0', port=5000)
