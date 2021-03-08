@@ -1,5 +1,5 @@
 # News Analyzer Application Suite
-News Analyzer API suite using Flask, Google NLP, and ...
+News Analyzer API suite using Flask, Google NLP, MongoDB, and ...
 
 
 ## Module Outlines
@@ -12,6 +12,8 @@ As a user of this API, I would want to be able to:
 3. See some confirmation on whether my file was successfully uploaded or not.
 
 This module will be both procedure and entity based. The actual file uploading task will be designed to be procedural based due to the different types of user input. The flexibility offered by a task-by-task API will allow different upload types (jpg, pdf, docx) to have their own individual process flows.
+
+In my final build, I elected to use mongoDB + pymongo in order to document each inserted document and I use a local filestore in order to store all the necessary files. 
 
 #### Methods
 Sample High Level Methods
