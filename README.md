@@ -69,7 +69,7 @@ Here is a link to the deployed application (limited availability):
 ### Uploader
 The application starts off with the user on a home page with a simple file upload selection and confirmation button.  
 
-<center><img src="./Images/transover.png" width="50%" /></center>
+<center><img src="./Images/uploader.PNG" width="50%" /></center>
 
 Once a file is uploaded, the upload will be documented in a mongoDB Cloud database and the user will be taken to a page with analysis from the ingestor module will be displayed.
 ### Ingestor
