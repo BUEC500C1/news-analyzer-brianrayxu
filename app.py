@@ -6,6 +6,7 @@ import pdfreader
 from pdfreader import PDFDocument, SimplePDFViewer
 import os
 import pymongo
+from google.cloud import language_v1
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './filestore/'
@@ -41,6 +42,7 @@ def uploader_file():
             textData += canvas.strings
             tempstring = ''
             textWords = []
+            textWhole = ''
             for character in textData:
                 if character != ' ':
                     tempstring += character
@@ -48,7 +50,17 @@ def uploader_file():
                     if tempstring:
                         textWords.append(tempstring)
                         tempstring = ''
-                
+
+        #turn words into whole string for NLP  
+        textWhole = ' '.join(textWords)  
+        NLPclient = language_v1.LanguageServiceClient.from_service_account_json("./project2-ec601-38fd65cd495b.json")
+        document = language_v1.Document(content=textWhole, type_=language_v1.Document.Type.PLAIN_TEXT)
+        annotations = NLPclient.analyze_sentiment(request={'document': document})
+
+        score = annotations.document_sentiment.score
+        magnitude = annotations.document_sentiment.magnitude
+
+
         print(secure_filename(f.filename))
         print(creationDate)
         print(textWords)
@@ -56,11 +68,13 @@ def uploader_file():
         fileDocument = {
             "name" : secure_filename(f.filename),
             "creationDate" : creationDate,
-            "text" : textWords
+            "text" : textWords,
+            "sentiment_score" : score,
+            "sentiment_magnitude" : magnitude
         }
 
         collection.insert_one(fileDocument)
-        return 'file uploaded successfully'
+        return (secure_filename(f.filename) + " was uploaded with sentiment_score of " + str(score) + " and magnitude of " + str(magnitude))
 
 
 @app.route('/textnlp/', methods=['GET', 'POST'])
