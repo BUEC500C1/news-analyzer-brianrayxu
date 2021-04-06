@@ -62,6 +62,9 @@ Sample High Level Methods
 - createFeed('popular') : Return a JSON object containing a list of most popular viewed articles.
 
 ## Results
+In order to run this code, make sure you have the environment variable "GOOGLE_APPLICATION_CREDENTIALS" set to be the path of your API Key.
+
+Here is a link to the deployed application (limited availability): 
 
 ### Uploader
 The application starts off with the user on a home page with a simple file upload selection and confirmation button.  
@@ -83,6 +86,6 @@ Unfortunately, the functionality of this portion of the application is very limi
 ### Deployed on AWS EC2
 The app was deployed on AWS and can be graded on 4/6/21 from 9AM to 6PM. Here is a picture of a stub when the app prototype was first deployed as evidence of completion:
 
-<center><img src="./Images/transover.png" width="50%" /></center>
+<center><img src="./Images/uploader.PNG" width="50%" /></center>
 
 
