@@ -62,7 +62,7 @@ Sample High Level Methods
 - createFeed('popular') : Return a JSON object containing a list of most popular viewed articles.
 
 ## Results
-In order to run this code, make sure you have the environment variable "GOOGLE_APPLICATION_CREDENTIALS" set to be the path of your API Key.
+In order to run this code, make sure you have the environment variable "GOOGLE_APPLICATION_CREDENTIALS" set to be the path of your API Key. However, for the sake of deployment, the API credentials on the deployed app will be my own.
 
 Here is a link to the deployed application (limited availability): 
 
