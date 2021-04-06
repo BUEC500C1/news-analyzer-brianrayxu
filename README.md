@@ -1,6 +1,7 @@
 # News Analyzer Application Suite
-News Analyzer API suite using Flask, Google NLP, MongoDB, and ...
+News Analyzer API suite using Flask, Google NLP, MongoDB.
 
+SEE RESULTS SECTION FOR GRADING
 
 ## Module Outlines
 
@@ -60,8 +61,28 @@ Sample High Level Methods
 
 - createFeed('popular') : Return a JSON object containing a list of most popular viewed articles.
 
-## Deployment - Flask + AWS
+## Results
 
-### Flask
+### Uploader
+The application starts off with the user on a home page with a simple file upload selection and confirmation button.  
 
-### AWS - EC2
+<center><img src="./Images/transover.png" width="50%" /></center>
+
+Once a file is uploaded, the upload will be documented in a mongoDB Cloud database and the user will be taken to a page with analysis from the ingestor module will be displayed.
+### Ingestor
+Upon upload, the application will automatically run its ingestor functions so that entries in the filestore and database will have content in their respective cells. 
+
+Some functionality included are a pdf2text conversion so we can get text data, an NLP functionality to analyze that text and provide sentiment, and finally a bunch of metadata from the PDF file itself. 
+
+Note: PDF files vary in the amounts of metadata in them. Since PDFs are not regulated in any way or standard, some functionalities can be quite pointless or lacking in success. 
+### NLP - Sentiment Analysis
+The NLP analysis included is a basic usage of the sentiment analysis API from the Google NLP Library. Specifically, text data is fed to the API and a response of a score and magnitude is provided based on postive or negative general sentiment. 
+
+Unfortunately, the functionality of this portion of the application is very limited due to the fact that PDF files are not always full of text data and the PDF2Text package used in the ingestor is not as robust as one would like.
+
+### Deployed on AWS EC2
+The app was deployed on AWS and can be graded on 4/6/21 from 9AM to 6PM. Here is a picture of a stub when the app prototype was first deployed as evidence of completion:
+
+<center><img src="./Images/transover.png" width="50%" /></center>
+
+
