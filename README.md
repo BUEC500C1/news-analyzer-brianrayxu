@@ -83,6 +83,13 @@ The NLP analysis included is a basic usage of the sentiment analysis API from th
 
 Unfortunately, the functionality of this portion of the application is very limited due to the fact that PDF files are not always full of text data and the PDF2Text package used in the ingestor is not as robust as one would like.
 
+### MongoDB Database Functionality
+As of now, there is limited evidence that there is database functionality besides reading the source code itself. Here are some screenshots to prove that Database functionality is working as intended:
+
+
+<center><img src="./Images/db.PNG" width="50%" /></center>
+
+
 ### Deployed on AWS EC2
 The app was deployed on AWS and can be graded on 4/6/21 from 9AM to 6PM. Here is a picture of a stub when the app prototype was first deployed as evidence of completion:
 
