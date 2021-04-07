@@ -64,7 +64,7 @@ Sample High Level Methods
 ## Results
 In order to run this code, make sure you have the environment variable "GOOGLE_APPLICATION_CREDENTIALS" set to be the path of your API Key. However, for the sake of deployment, the API credentials on the deployed app will be my own.
 
-Here is a link to the deployed application (limited availability): http://3.142.213.158:5000/upload
+### Here is a link to the deployed application (limited availability): http://3.142.213.158:5000/upload
 
 ### Uploader
 The application starts off with the user on a home page with a simple file upload selection and confirmation button.  
